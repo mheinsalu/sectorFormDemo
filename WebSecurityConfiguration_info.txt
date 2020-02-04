@@ -1,0 +1,39 @@
+package ee.mrtnh.sector_form_demo.config;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+
+@Configuration
+@EnableWebSecurity // Cross-Site Request Forgery protection support
+public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    // https://developer.okta.com/blog/2018/07/30/10-ways-to-secure-spring-boot
+
+    // force HTTPS / require a secure connection
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.requiresChannel().anyRequest().requiresSecure();
+        // enable the Content Security Policy (CSP) header to prevent XSS (cross-site scripting) attacks
+        http.headers()
+                .contentSecurityPolicy(
+                        "script-src 'self' https://trustedscripts.example.com; object-src https://trustedplugins.example.com; report-uri /csp-report-endpoint/");
+        http
+                .csrf()
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+    }
+
+    /*
+    https://stackabuse.com/securing-spring-boot-web-applications/
+    Security:
+        SQL Injection: this app doesn't use URL parameters (at all) to build SQL queries
+        URL Parameter Input Validation: this app doesn't use URL parameters
+
+        Form Field Input Validation:
+            Usually form field input is transmitted from client to server via a POST request.
+            Since form data usually includes arbitrary user input, all input field data must be validated
+            to make sure it doesn't contain malicious values that could harm the application or expose sensitive information.
+     */
+}

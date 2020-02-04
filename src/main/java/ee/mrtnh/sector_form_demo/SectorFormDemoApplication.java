@@ -10,10 +10,6 @@ public class SectorFormDemoApplication extends SpringBootServletInitializer {
     // extends and override are needed to start as a .war without embedded Tomcat
     // spring initializer puts this in a separate class named ServletInitializer
 
-    // TODO: api URL to controller and JS from .properties?
-    // TODO: Spring Security, defend against attacks?
-    // TODO: maybe split SectorFormDemoService into >=two smaller classes
-    // TODO: unit tests
     public static void main(String[] args) {
         SpringApplication.run(SectorFormDemoApplication.class, args);
     }

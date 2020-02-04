@@ -21,6 +21,8 @@ import static java.util.UUID.randomUUID;
 @Slf4j
 public class SectorFormDemoService {
 
+    // TODO: split into smaller Service classes?
+
     @Resource
     UserInfoRepository userInfoRepository;
 
@@ -43,6 +45,7 @@ public class SectorFormDemoService {
         log.info("Saving info of user with ID " + userInfo.getUserId() + " to database.");
         // check if user exists in db. set userInfo's ID manually to perform UPDATE operation with save() method
         if (userInfoRepository.existsByUserId(userIdCookie)) {
+            log.info("User with ID " + userInfo.getUserId() + " already exists in database. Updating data.");
             Integer id = userInfoRepository.findUserInfoByUserId(userIdCookie).getId();
             userInfo.setId(id);
         }

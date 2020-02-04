@@ -1,4 +1,5 @@
-let apiURL = "/";
+// TODO: change this when running on external Tomcat server. See application.properties
+let apiURL = "/sector_form_demo/";
 
 function submitFormDataButtonClick() {
     let name = document.getElementById("nameInputField").value;
