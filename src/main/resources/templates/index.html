@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sector Form Demo</title>
+
+    <!-- th:href.. is needed because otherwise it won't find the external files when the application is deployed as a .war on an external Tomcat server -->
+    <link rel="stylesheet" th:href="@{/css/sectorFormDemo.css}"/>
+    <script type="text/javascript" th:src="@{/js/sectorFormDemo.js}"></script>
+
+    <!--   TODO: download js to local folder -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript"
+            th:src="@{/bootstrap-duallistbox-4.0.1/dist/jquery.bootstrap-duallistbox.min.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap-duallistbox-4.0.1/src/bootstrap-duallistbox.css}">
+
+</head>
+
+<body onload="setupBody()">
+<div class="container">
+
+    <h2 id="uiTitle">Sector Form Demo</h2>
+
+    <span id="instructionText">Please enter your name, select the sectors you are currently involved in and agree to the ToS.</span>
+    <br>
+
+    <!--    <form id="demoform" th:onsubmit="saveFormDataIfValid()"> --> <!-- method="post" -->
+    <!-- in case <button type="submit" ...> is used -->
+    <form id="demoform">
+
+        <input type="text" id="nameInputField" placeholder="Name">
+        <br>
+
+        <select multiple="multiple" size="10" name="duallistbox_demo" title="duallistbox_demo" id="sectorBox">
+        </select>
+        <br>
+
+        <label id="termsCheckboxContainer">
+            <input type="checkbox" id="termsCheckbox"/>
+            <span>Agree to terms</span>
+        </label>
+        <br>
+
+        <!-- The default type for a button is submit. When a submit button is pressed, the page will be REFRESHED.-->
+        <button type="button" class="btn btn-default btn-block" id="saveButton" onclick="submitFormDataButtonClick()">
+            Submit form data
+        </button>
+
+    </form>
+
+</div>
+</body>
+
+<footer class="footer">
+    Author: Märten Heinsalu
+    <br>
+    2020
+</footer>
+
+</html>
